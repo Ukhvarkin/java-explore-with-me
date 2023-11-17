@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Builder
-@Table(name = "hits")
+@Table(name = "stats")
 @AllArgsConstructor
 @NoArgsConstructor
-public class EndpointHit {
+public class StatsHit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

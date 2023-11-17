@@ -21,26 +21,19 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     @Transactional
-    public void create(EndpointHitDto endpointHitDto) {
+    public EndpointHitDto create(EndpointHitDto endpointHitDto) {
         log.info("Добавлена новая запись");
-        statsRepository.save(EndpointHitMapper.toEndpointHit(endpointHitDto));
+        return EndpointHitMapper.toDto(statsRepository.save(EndpointHitMapper.toStatsHit(endpointHitDto)));
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ViewStatDto> get(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
-        if (uris == null) {
-            if (unique) {
-                return ViewStatsMapper.toListViewStatDto(statsRepository.findAllUniqueIp(start, end));
-            } else {
-                return ViewStatsMapper.toListViewStatDto(statsRepository.findAllIp(start, end));
-            }
+
+        if (unique) {
+            return ViewStatsMapper.toListViewStatDto(statsRepository.findAllUniqueIp(start, end, uris));
         } else {
-            if (unique) {
-                return ViewStatsMapper.toListViewStatDto(statsRepository.findUniqueIpByUris(start, end, uris));
-            } else {
-                return ViewStatsMapper.toListViewStatDto(statsRepository.findIpByUris(start, end, uris));
-            }
+            return ViewStatsMapper.toListViewStatDto(statsRepository.findAllIp(start, end, uris));
         }
     }
 }

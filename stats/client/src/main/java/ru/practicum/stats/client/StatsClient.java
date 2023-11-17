@@ -32,15 +32,15 @@ public class StatsClient {
             .build();
     }
 
-    public void create(HttpServletRequest request) {
+    public ResponseEntity<EndpointHitDto> create(HttpServletRequest request) {
         EndpointHitDto endpointHitDto = new EndpointHitDto(
             "ewm-main-service",
             request.getRequestURI(),
             request.getRemoteAddr(),
             LocalDateTime.now()
         );
-        rest.postForEntity("/hit", new HttpEntity<>(endpointHitDto), EndpointHitDto.class);
         log.info("client: POST запрос /hit: {}", endpointHitDto);
+        return rest.postForEntity("/hit", new HttpEntity<>(endpointHitDto), EndpointHitDto.class);
     }
 
     public ResponseEntity<List<ViewStatDto>> get(String start, String end, String[] uris, boolean unique) {
