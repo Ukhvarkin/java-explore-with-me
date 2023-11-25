@@ -30,7 +30,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     @Transactional(readOnly = true)
     public List<ViewStatDto> get(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
-        if (end.isBefore(start)){
+        if (end.isBefore(start)) {
             throw new BadRequest("The end date cannot be before the start date.");
         }
 
