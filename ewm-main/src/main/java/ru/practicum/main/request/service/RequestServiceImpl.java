@@ -18,6 +18,7 @@ import ru.practicum.main.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -48,7 +49,7 @@ public class RequestServiceImpl implements RequestService {
             .orElseThrow(() -> new NotFoundException(String.format("Event with id=%d was not found", eventId)));
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", userId)));
-        if (userId == event.getInitiator().getId()) {
+        if (userId.equals(event.getInitiator().getId())) {
             throw new ConflictException(String.format("User %d is an initiator of event %d", userId, eventId));
         }
         if (event.getState() != State.PUBLISHED) {
@@ -80,7 +81,7 @@ public class RequestServiceImpl implements RequestService {
     public ParticipationRequestDto update(Long userId, Long requestId) {
         ParticipationRequest request = requestRepository.findById(requestId)
             .orElseThrow(() -> new NotFoundException(String.format("Request with id=%d was not found", requestId)));
-        if (request.getRequester().getId() != userId) {
+        if (!Objects.equals(request.getRequester().getId(), userId)) {
             throw new RuntimeException();
         }
         request.setStatus(RequestStatus.CANCELED);
