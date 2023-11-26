@@ -16,7 +16,6 @@ import ru.practicum.main.event.model.Event;
 import ru.practicum.main.event.repository.EventRepository;
 import ru.practicum.main.exception.NotFoundException;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,11 +31,10 @@ public class CompilationServiceImpl implements CompilationService {
         log.info("[admin] : Создание подборки: {}", newCompilationDto);
         Compilation compilation = CompilationMapper.toModel(newCompilationDto);
 
-        if (newCompilationDto.getEvents() != null) {
+        List<Long> events = newCompilationDto.getEvents();
+        if (events != null && !events.isEmpty()) {
             List<Event> result = eventRepository.findAllByIdIn(newCompilationDto.getEvents());
             compilation.setEvents(result);
-        } else {
-            compilation.setEvents(Collections.emptyList());
         }
 
         return CompilationMapper.toDto(compilationRepository.save(compilation));
@@ -51,7 +49,8 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    public CompilationDto updateByAdmin(Long compId, UpdateCompilationRequest updateCompilationRequest) {
+    public CompilationDto updateByAdmin(UpdateCompilationRequest updateCompilationRequest) {
+        Long compId = updateCompilationRequest.getId();
         log.info("[admin] : Модификация подборки c id: {}", compId);
         Compilation compilation = compilationRepository.findById(compId).orElseThrow(
             () -> new NotFoundException(String.format("Compilation with id=%d was not found", compId)));

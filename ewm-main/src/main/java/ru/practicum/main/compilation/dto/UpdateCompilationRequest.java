@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateCompilationRequest {
+    private Long id;
     private List<Long> events;
     private Boolean pinned;
     @Size(min = 1, max = 50)

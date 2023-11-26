@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         Pageable pageable = PageRequest.of(from / size, size, Sort.by(Sort.Direction.ASC, "id"));
         List<UserDto> result;
 
-        if (ids == null) {
+        if (ids == null || ids.isEmpty()) {
             log.info("Получение списка всех пользователей");
             result = userRepository.findAll(pageable).stream()
                 .map(UserMapper::toDto)

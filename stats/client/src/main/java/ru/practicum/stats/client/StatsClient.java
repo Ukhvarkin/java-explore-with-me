@@ -1,6 +1,7 @@
 package ru.practicum.stats.client;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.practicum.stats.dto.EndpointHitDto;
 import ru.practicum.stats.dto.ViewStatDto;
+import ru.practicum.stats.dto.ViewStatsRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -25,14 +27,15 @@ import java.util.List;
 public class StatsClient {
     private final RestTemplate rest;
 
-    public StatsClient(@Value("${server.url}") String baseUrl, RestTemplateBuilder templateBuilder) {
-        this.rest = templateBuilder
-            .uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
+    @Autowired
+    public StatsClient(@Value("${stats-server.url}") String url, RestTemplateBuilder builder) {
+        this.rest = builder
+            .uriTemplateHandler(new DefaultUriBuilderFactory(url))
             .requestFactory(HttpComponentsClientHttpRequestFactory::new)
             .build();
     }
 
-    public ResponseEntity<EndpointHitDto> create(HttpServletRequest request) {
+    public EndpointHitDto create(HttpServletRequest request) {
         EndpointHitDto endpointHitDto = new EndpointHitDto(
             "ewm-main-service",
             request.getRequestURI(),
@@ -40,14 +43,18 @@ public class StatsClient {
             LocalDateTime.now()
         );
         log.info("client: POST запрос /hit: {}", endpointHitDto);
-        return rest.postForEntity("/hit", new HttpEntity<>(endpointHitDto), EndpointHitDto.class);
+        return rest.postForEntity("/hit", new HttpEntity<>(endpointHitDto), EndpointHitDto.class).getBody();
     }
 
-    public ResponseEntity<List<ViewStatDto>> get(String start, String end, String[] uris, boolean unique) {
-        log.info("client: GET запрос /stats: start={}, end={}, uris={}, unique={}", start, end, uris, unique);
-        return rest.exchange("/stats?start={start}&end={end}&uris={uris}&unique={unique}",
-            HttpMethod.GET, getHttpEntity(), new ParameterizedTypeReference<>() {
-            }, start, end, uris, unique);
+    public List<ViewStatDto> get(ViewStatsRequest request) {
+        ResponseEntity<List<ViewStatDto>> response =
+            rest.exchange("/stats?start={start}&end={end}&uris={uris}&unique={unique}",
+                HttpMethod.GET,
+                getHttpEntity(),
+                new ParameterizedTypeReference<>() {
+                }, request.getStart(), request.getEnd(), request.getUris(), request.isUnique()
+            );
+        return response.getBody();
     }
 
     private <T> HttpEntity<T> getHttpEntity() {

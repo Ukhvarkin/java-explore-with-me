@@ -41,6 +41,6 @@ public class PrivateRequestController {
     public ParticipationRequestDto cancel(@PathVariable(name = "userId") long userId,
                                           @PathVariable(name = "requestId") long requestId) {
         log.info("PATCH : Отмена запроса с id: {}, на участие пользователя с id: {}", requestId, userId);
-        return requestService.update(userId, requestId);
+        return requestService.cancel(userId, requestId);
     }
 }

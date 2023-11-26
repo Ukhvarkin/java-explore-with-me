@@ -21,7 +21,7 @@ public class PublicCompilationController {
     private final CompilationService compilationService;
 
     @GetMapping
-    List<CompilationDto> getAll(@RequestParam(value = "pinned", required = false) Boolean pinned,
+    public List<CompilationDto> getAll(@RequestParam(value = "pinned", required = false) Boolean pinned,
                                 @RequestParam(value = "from", required = false, defaultValue = "0") int from,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         log.info("GET : Запрос на получение списка подборок, pinned: {}", pinned);
@@ -29,7 +29,7 @@ public class PublicCompilationController {
     }
 
     @GetMapping("/{compId}")
-    CompilationDto getById(@PositiveOrZero @PathVariable(name = "compId") Long compId) {
+    public CompilationDto getById(@PositiveOrZero @PathVariable(name = "compId") Long compId) {
         log.info("GET : Запрос на получение подборки c id: {}", compId);
         return compilationService.getByIdPublic(compId);
     }

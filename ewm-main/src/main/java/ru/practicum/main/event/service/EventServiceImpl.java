@@ -2,7 +2,6 @@ package ru.practicum.main.event.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,6 +12,7 @@ import ru.practicum.main.enums.AdminStateAction;
 import ru.practicum.main.enums.RequestStatus;
 import ru.practicum.main.enums.State;
 import ru.practicum.main.enums.UserStateAction;
+import ru.practicum.main.event.dto.EventFilterParams;
 import ru.practicum.main.event.dto.EventFullDto;
 import ru.practicum.main.event.dto.EventShortDto;
 import ru.practicum.main.event.dto.NewEventDto;
@@ -33,6 +33,7 @@ import ru.practicum.main.request.repository.RequestRepository;
 import ru.practicum.main.user.repository.UserRepository;
 import ru.practicum.stats.client.StatsClient;
 import ru.practicum.stats.dto.ViewStatDto;
+import ru.practicum.stats.dto.ViewStatsRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -49,7 +50,7 @@ public class EventServiceImpl implements EventService {
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
     private final RequestRepository requestRepository;
-    private final StatsClient statsClient = new StatsClient("http://stats-server:9090", new RestTemplateBuilder());
+    private final StatsClient statsClient;
 
     @Override
     public List<EventFullDto> getByAdmin(List<Long> users, List<State> states, List<Long> categories,
@@ -151,18 +152,21 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventShortDto> getByPublic(String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart,
-                                           LocalDateTime rangeEnd, Boolean onlyAvailable, String sort, int from,
-                                           int size,
+    public List<EventShortDto> getByPublic(EventFilterParams filterParams,
                                            HttpServletRequest request) {
         log.info("[public] : Получение списка событий с фильтрацией");
-        if (rangeEnd != null && rangeStart != null && rangeEnd.isBefore(rangeStart)) {
+        if (filterParams.getRangeEnd() != null && filterParams.getRangeStart() != null &&
+            filterParams.getRangeEnd().isBefore(filterParams.getRangeStart())) {
             throw new BadRequest("End date is before start date");
         }
-        PageRequest pageRequest = PageRequest.of(from / size, size);
-        List<Event> events =
-            eventRepository.findAllEventsPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort,
-                pageRequest);
+
+        PageRequest pageRequest = PageRequest.of(filterParams.getFrom() / filterParams.getSize(),
+            filterParams.getSize());
+
+        List<Event> events = eventRepository.findAllEventsPublic(filterParams.getText(),
+            filterParams.getCategories(), filterParams.getPaid(), filterParams.getRangeStart(),
+            filterParams.getRangeEnd(), filterParams.getOnlyAvailable(), filterParams.getSort(),
+            pageRequest);
         statsClient.create(request);
         return events.stream()
             .map(EventMapper::toShortDto)
@@ -364,9 +368,12 @@ public class EventServiceImpl implements EventService {
         String url = "/events/" + event.getId();
 
         List<ViewStatDto> viewStats = statsClient
-            .get(event.getCreatedOn().format(formatter), LocalDateTime.now().format(formatter), new String[] {url},
-                true)
-            .getBody();
+            .get(new ViewStatsRequest(
+                event.getCreatedOn().format(formatter),
+                LocalDateTime.now().format(formatter),
+                new String[]{url},
+                true
+            ));
 
         viewStats.stream()
             .findFirst()

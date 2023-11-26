@@ -21,14 +21,14 @@ public class PublicCategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    List<CategoryDto> getAll(@RequestParam(value = "from", required = false, defaultValue = "0") int from,
+    public List<CategoryDto> getAll(@RequestParam(value = "from", required = false, defaultValue = "0") int from,
                              @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         log.info("GET : Запрос списка категорий");
         return categoryService.getAll(from, size);
     }
 
     @GetMapping("/{catId}")
-    CategoryDto getById(@Positive @PathVariable(name = "catId") long catId) {
+    public CategoryDto getById(@Positive @PathVariable(name = "catId") long catId) {
         log.info("GET : Запрос категории с id: {}", catId);
         return categoryService.getById(catId);
     }

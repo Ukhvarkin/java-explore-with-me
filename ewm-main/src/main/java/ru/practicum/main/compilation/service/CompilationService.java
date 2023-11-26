@@ -11,7 +11,7 @@ public interface CompilationService {
 
     void deleteByAdmin(Long compId);
 
-    CompilationDto updateByAdmin(Long compId, UpdateCompilationRequest updateCompilationRequest);
+    CompilationDto updateByAdmin(UpdateCompilationRequest updateCompilationRequest);
 
     List<CompilationDto> getByPublic(Boolean pinned, int from, int size);
 

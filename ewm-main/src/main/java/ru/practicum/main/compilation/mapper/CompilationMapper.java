@@ -5,9 +5,12 @@ import ru.practicum.main.compilation.dto.NewCompilationDto;
 import ru.practicum.main.compilation.model.Compilation;
 import ru.practicum.main.event.mapper.EventMapper;
 
+import java.util.Collections;
+
 public class CompilationMapper {
     public static Compilation toModel(NewCompilationDto newCompilationDto) {
         return Compilation.builder()
+            .events(Collections.emptyList())
             .pinned(newCompilationDto.isPinned())
             .title(newCompilationDto.getTitle())
             .build();

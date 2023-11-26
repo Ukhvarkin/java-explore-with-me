@@ -1,6 +1,7 @@
 package ru.practicum.main.event.service;
 
 import ru.practicum.main.enums.State;
+import ru.practicum.main.event.dto.EventFilterParams;
 import ru.practicum.main.event.dto.EventFullDto;
 import ru.practicum.main.event.dto.EventShortDto;
 import ru.practicum.main.event.dto.NewEventDto;
@@ -20,9 +21,7 @@ public interface EventService {
 
     EventFullDto updateByAdmin(Long eventId, UpdateEventAdminRequest updateEventAdminRequest);
 
-    List<EventShortDto> getByPublic(String text, List<Long> categories, Boolean paid,
-                                    LocalDateTime rangeStart, LocalDateTime rangeEnd,
-                                    Boolean onlyAvailable, String sort, int from, int size,
+    List<EventShortDto> getByPublic(EventFilterParams filterParams,
                                     HttpServletRequest request);
 
     EventFullDto getEventByIdPublic(Long eventId, HttpServletRequest request);

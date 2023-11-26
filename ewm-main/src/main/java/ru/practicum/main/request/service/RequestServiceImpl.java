@@ -16,9 +16,7 @@ import ru.practicum.main.request.repository.RequestRepository;
 import ru.practicum.main.user.model.User;
 import ru.practicum.main.user.repository.UserRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -47,11 +45,11 @@ public class RequestServiceImpl implements RequestService {
         }
         Event event = eventRepository.findById(eventId)
             .orElseThrow(() -> new NotFoundException(String.format("Event with id=%d was not found", eventId)));
-        User user = userRepository.findById(userId)
-            .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", userId)));
+
         if (userId.equals(event.getInitiator().getId())) {
             throw new ConflictException(String.format("User %d is an initiator of event %d", userId, eventId));
         }
+
         if (event.getState() != State.PUBLISHED) {
             throw new ConflictException("Event must be published.");
         }
@@ -60,31 +58,23 @@ public class RequestServiceImpl implements RequestService {
             event.getParticipantLimit() != 0) {
             throw new ConflictException(String.format("Event %d has maximum confirmed requests", eventId));
         }
-        ParticipationRequest request = ParticipationRequest.builder()
-            .event(event)
-            .requester(user)
-            .created(LocalDateTime.now())
-            .build();
-        if (event.getParticipantLimit() == 0) {
-            request.setStatus(RequestStatus.CONFIRMED);
-        } else {
-            request.setStatus(RequestStatus.PENDING);
-        }
-        if (!event.getRequestModeration()) {
-            request.setStatus(RequestStatus.CONFIRMED);
-        }
+
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", userId)));
+
+        ParticipationRequest request = RequestMapper.toModel(event, user);
+
         log.info("Запрос пользователя с id: {}, на участие в событии c id: {} - создан", userId, eventId);
         return RequestMapper.toDto(requestRepository.save(request));
     }
 
     @Override
-    public ParticipationRequestDto update(Long userId, Long requestId) {
-        ParticipationRequest request = requestRepository.findById(requestId)
+    public ParticipationRequestDto cancel(Long userId, Long requestId) {
+        ParticipationRequest request = requestRepository.findByIdAndRequesterId(requestId, userId)
             .orElseThrow(() -> new NotFoundException(String.format("Request with id=%d was not found", requestId)));
-        if (!Objects.equals(request.getRequester().getId(), userId)) {
-            throw new RuntimeException();
-        }
+
         request.setStatus(RequestStatus.CANCELED);
+
         log.info("Пользователь с id: {}, отменил запрос на участие", userId);
         return RequestMapper.toDto(requestRepository.save(request));
     }

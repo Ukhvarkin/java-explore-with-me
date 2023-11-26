@@ -6,6 +6,7 @@ import ru.practicum.main.enums.RequestStatus;
 import ru.practicum.main.request.model.ParticipationRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RequestRepository extends JpaRepository<ParticipationRequest, Long> {
@@ -16,4 +17,6 @@ public interface RequestRepository extends JpaRepository<ParticipationRequest, L
     List<ParticipationRequest> findAllByRequester_Id(Long userId);
 
     List<ParticipationRequest> findAllByEventIdAndRequesterId(Long eventId, Long userId);
+
+    Optional<ParticipationRequest> findByIdAndRequesterId(Long requestId, Long userId);
 }

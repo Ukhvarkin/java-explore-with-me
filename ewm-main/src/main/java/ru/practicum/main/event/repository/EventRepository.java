@@ -49,7 +49,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     List<Event> findAllByInitiatorId(Long userId, Pageable pageable);
 
-    List<Event> findAllByCategoryId(long catId);
+    long countByCategoryId(long catId);
 
     List<Event> findAllByIdIn(List<Long> events);
 }

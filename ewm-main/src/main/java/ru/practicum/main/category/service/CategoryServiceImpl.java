@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.category.dto.CategoryDto;
 import ru.practicum.main.category.dto.NewCategoryDto;
 import ru.practicum.main.category.mapper.CategoryMapper;
@@ -21,11 +22,13 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final EventRepository eventRepository;
 
     @Override
+    @Transactional
     public CategoryDto addByAdmin(NewCategoryDto newCategoryDto) {
         Category category = CategoryMapper.toModel(newCategoryDto);
         log.info("[admin] : Добавление категории: {}", category.getName());
@@ -33,12 +36,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteByAdmin(long catId) {
         categoryRepository.findById(catId).orElseThrow(
-            () -> new NotFoundException(String.format(String.format("Category with id=%d was not found", catId))));
+            () -> new NotFoundException(String.format("Category with id=%d was not found", catId)));
         log.info("[admin] : Удаление категории с id: {}", catId);
 
-        if (!eventRepository.findAllByCategoryId(catId).isEmpty()) {
+        if (eventRepository.countByCategoryId(catId) > 0) {
             log.warn("Существует событие с данной категорией. Надо удалить событие");
             throw new ConflictException("The category is not empty");
         }
@@ -47,9 +51,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryDto updateByAdmin(long catId, CategoryDto categoryDto) {
         Category category = categoryRepository.findById(catId).orElseThrow(
-            () -> new NotFoundException(String.format(String.format("Category with id=%d was not found", catId))));
+            () -> new NotFoundException(String.format("Category with id=%d was not found", catId)));
         log.info("[admin] : Редактирование категории: {}", category.getName());
         if (category.getName() != null) {
             category.setName(categoryDto.getName());
@@ -71,6 +76,6 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto getById(long catId) {
         log.info("[public] : Получение категории по id: {}", catId);
         return CategoryMapper.toDto(categoryRepository.findById(catId).orElseThrow(
-            () -> new NotFoundException(String.format(String.format("Category with id=%d was not found", catId)))));
+            () -> new NotFoundException(String.format("Category with id=%d was not found", catId))));
     }
 }

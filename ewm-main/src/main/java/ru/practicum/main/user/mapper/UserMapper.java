@@ -23,15 +23,6 @@ public class UserMapper {
             .build();
     }
 
-    public static User toModel(UserDto userDto) {
-        User.UserBuilder user = User.builder();
-        user.id(userDto.getId());
-        user.name(userDto.getName());
-        user.email(userDto.getEmail());
-
-        return user.build();
-    }
-
     public static User toModel(NewUserRequest newUserRequest) {
         return User.builder()
             .name(newUserRequest.getName())

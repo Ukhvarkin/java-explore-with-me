@@ -30,7 +30,7 @@ public class AdminUserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<UserDto> get(@RequestParam(value = "ids", required = false) List<Long> ids,
+    public List<UserDto> get(@RequestParam(value = "ids", required = false) List<Long> ids,
                       @RequestParam(value = "from", required = false, defaultValue = "0") int from,
                       @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         log.info("Запрос на получение списка пользователей");
@@ -39,7 +39,7 @@ public class AdminUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    UserDto add(@Valid @RequestBody NewUserRequest newUserRequest) {
+    public UserDto add(@Valid @RequestBody NewUserRequest newUserRequest) {
         log.info("Запрос на добавление пользователя");
         return userService.add(newUserRequest);
     }

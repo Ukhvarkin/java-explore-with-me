@@ -34,7 +34,7 @@ public class PrivateEventController {
     private final EventService eventService;
 
     @GetMapping
-    List<EventShortDto> getAll(@PositiveOrZero @PathVariable(name = "userId") Long userId,
+    public List<EventShortDto> getAll(@PositiveOrZero @PathVariable(name = "userId") Long userId,
                                @RequestParam(value = "from", defaultValue = "0") int from,
                                @RequestParam(value = "size", defaultValue = "10") int size) {
         log.info("GET : Запрос на получение списка мероприятий для пользователя с id: {}, " +
@@ -45,7 +45,7 @@ public class PrivateEventController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    EventFullDto add(@Positive @PathVariable(name = "userId") Long userId,
+    public EventFullDto add(@Positive @PathVariable(name = "userId") Long userId,
                      @Valid @RequestBody NewEventDto newEventDto) {
         log.info("POST : Запрос на добавление нового мероприятия пользователя с id: {}. " +
             "Параметры: {}", userId, newEventDto);
@@ -53,7 +53,7 @@ public class PrivateEventController {
     }
 
     @GetMapping("/{eventId}")
-    EventFullDto getById(@Positive @PathVariable(name = "userId") Long userId,
+    public EventFullDto getById(@Positive @PathVariable(name = "userId") Long userId,
                          @Positive @PathVariable(name = "eventId") Long eventId) {
         log.info("GET : Запрос на получение мероприятия с id: {} пользователя с id: {}", eventId, userId);
         return eventService.getByIdPrivate(userId, eventId);
