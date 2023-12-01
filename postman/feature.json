@@ -7,1186 +7,531 @@
 	},
 	"item": [
 		{
-			"name": "add values",
-			"item": [
+			"name": "CONFLICT initiatior add like",
+			"event": [
 				{
-					"name": "create user 1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Пользователь должен содержать поля: id, name, email\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('name');\r",
-									"pm.expect(target).to.have.property('email');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(source.name).equal(target.name, 'Имя пользователя должно соответствовать отправленному в запросе');\r",
-									"    pm.expect(source.email).equal(target.email, 'Почта пользователя должна соответствовать отправленной в запросе');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Пользователь\",\r\n  \"email\": \"user@ya.ru\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create user 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Пользователь должен содержать поля: id, name, email\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('name');\r",
-									"pm.expect(target).to.have.property('email');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(source.name).equal(target.name, 'Имя пользователя должно соответствовать отправленному в запросе');\r",
-									"    pm.expect(source.email).equal(target.email, 'Почта пользователя должна соответствовать отправленной в запросе');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"User\",\r\n  \"email\": \"users@ya.ru\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create user 3",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Пользователь должен содержать поля: id, name, email\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('name');\r",
-									"pm.expect(target).to.have.property('email');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(source.name).equal(target.name, 'Имя пользователя должно соответствовать отправленному в запросе');\r",
-									"    pm.expect(source.email).equal(target.email, 'Почта пользователя должна соответствовать отправленной в запросе');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Поль\",\r\n  \"email\": \"usera@ya.ru\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/users",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add category",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Категория должна содержать поля: id, name\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('name');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(source.name).equal(target.name, 'Название категории должно совпадать с отправленным');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Тест\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/categories",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add event 1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);  \r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, description, participantLimit, state, createdOn, location, requestModeration\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('title');\r",
-									"pm.expect(target).to.have.property('annotation');\r",
-									"pm.expect(target).to.have.property('category');\r",
-									"pm.expect(target).to.have.property('paid');\r",
-									"pm.expect(target).to.have.property('eventDate');\r",
-									"pm.expect(target).to.have.property('initiator');\r",
-									"pm.expect(target).to.have.property('description');\r",
-									"pm.expect(target).to.have.property('participantLimit');\r",
-									"pm.expect(target).to.have.property('state');\r",
-									"pm.expect(target).to.have.property('createdOn');\r",
-									"pm.expect(target).to.have.property('location');\r",
-									"pm.expect(target).to.have.property('requestModeration');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(target.title).equal(source.title, 'Название события должно соответствовать названию события в запросе');\r",
-									"    pm.expect(target.annotation).equal(source.annotation, 'Аннотация события должна соответствовать аннотации события в запросе');\r",
-									"    pm.expect(target.paid.toString()).equal(source.paid.toString(), 'Стоимость события должна соответствовать стоимости события в запросе');\r",
-									"    pm.expect(target.eventDate).equal(source.eventDate, 'Дата проведения события должна соответствовать дате проведения события в запросе');\r",
-									"    pm.expect(target.description).equal(source.description, 'Описание события должно соответствовать описание события в запросе');\r",
-									"    pm.expect(target.participantLimit.toString()).equal(source.participantLimit.toString(), 'Лимит участников события должно соответствовать лимиту участников события в запросе');\r",
-									"    pm.expect(target.location.lat.toString()).equal(source.location.lat.toString(), 'Широта локации проведения события должна соответствовать широте локации проведения события в запросе');\r",
-									"    pm.expect(target.location.lon.toString()).equal(source.location.lon.toString(), 'Долгота локации проведения события должна соответствовать долготе локации проведения события в запросе');\r",
-									"    pm.expect(target.requestModeration.toString()).equal(source.requestModeration.toString(), 'Необходимость модерации события должна соответствовать необходимости модерации события в запросе');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"annotation\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\r\n  \"category\": 1,\r\n  \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\",\r\n  \"eventDate\": \"2024-12-31 18:00:00\",\r\n  \"location\": {\r\n    \"lat\": 40.7128,\r\n    \"lon\": -74.0060\r\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 100,\r\n  \"requestModeration\": true,\r\n  \"title\": \"Exciting Event Title\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add event 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);  \r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"const source = JSON.parse(pm.request.body.raw);\r",
-									"const target = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Событие должно содержать поля: id, title, annotation, category, paid, eventDate, initiator, description, participantLimit, state, createdOn, location, requestModeration\", function () {\r",
-									"pm.expect(target).to.have.property('id');\r",
-									"pm.expect(target).to.have.property('title');\r",
-									"pm.expect(target).to.have.property('annotation');\r",
-									"pm.expect(target).to.have.property('category');\r",
-									"pm.expect(target).to.have.property('paid');\r",
-									"pm.expect(target).to.have.property('eventDate');\r",
-									"pm.expect(target).to.have.property('initiator');\r",
-									"pm.expect(target).to.have.property('description');\r",
-									"pm.expect(target).to.have.property('participantLimit');\r",
-									"pm.expect(target).to.have.property('state');\r",
-									"pm.expect(target).to.have.property('createdOn');\r",
-									"pm.expect(target).to.have.property('location');\r",
-									"pm.expect(target).to.have.property('requestModeration');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.id).to.not.be.null;\r",
-									"    pm.expect(target.title).equal(source.title, 'Название события должно соответствовать названию события в запросе');\r",
-									"    pm.expect(target.annotation).equal(source.annotation, 'Аннотация события должна соответствовать аннотации события в запросе');\r",
-									"    pm.expect(target.paid.toString()).equal(source.paid.toString(), 'Стоимость события должна соответствовать стоимости события в запросе');\r",
-									"    pm.expect(target.eventDate).equal(source.eventDate, 'Дата проведения события должна соответствовать дате проведения события в запросе');\r",
-									"    pm.expect(target.description).equal(source.description, 'Описание события должно соответствовать описание события в запросе');\r",
-									"    pm.expect(target.participantLimit.toString()).equal(source.participantLimit.toString(), 'Лимит участников события должно соответствовать лимиту участников события в запросе');\r",
-									"    pm.expect(target.location.lat.toString()).equal(source.location.lat.toString(), 'Широта локации проведения события должна соответствовать широте локации проведения события в запросе');\r",
-									"    pm.expect(target.location.lon.toString()).equal(source.location.lon.toString(), 'Долгота локации проведения события должна соответствовать долготе локации проведения события в запросе');\r",
-									"    pm.expect(target.requestModeration.toString()).equal(source.requestModeration.toString(), 'Необходимость модерации события должна соответствовать необходимости модерации события в запросе');\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"annotation\": \"Cum quis et aut inventore sit. Voluptas optio est praesentium et sed rerum aliquid eum...\",\r\n  \"category\": 1,\r\n  \"description\": \"Rem consequatur dolor aperiam autem in nostrum. Pariatur et minus occaecati quod rerum molestiae recusandae...\",\r\n  \"eventDate\": \"2024-12-02 01:24:02\",\r\n  \"location\": {\r\n    \"lat\": 0.8832,\r\n    \"lon\": 40.0641\r\n  },\r\n  \"paid\": false,\r\n  \"participantLimit\": 838,\r\n  \"requestModeration\": true,\r\n  \"title\": \"Asperiores veniam id quasi quos inventore vero repudiandae qui numquam.\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "publish event 1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
-									"    pm.response.to.be.ok;    \r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"stateAction\": \"PUBLISH_EVENT\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/events/:eventId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"events",
-								":eventId"
-							],
-							"variable": [
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "publish event 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
-									"    pm.response.to.be.ok;    \r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"stateAction\": \"PUBLISH_EVENT\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/admin/events/:eventId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"events",
-								":eventId"
-							],
-							"variable": [
-								{
-									"key": "eventId",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Ответ должен содержать данные в формате json\", function () {\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"    const jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.be.an('array');\r",
-									"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 2').to.eql(2);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Тест данных для первого элемента\", function () {\r",
-									"    const firstEvent = pm.response.json()[0];\r",
-									"\r",
-									"    pm.expect(firstEvent).to.have.property('annotation', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');\r",
-									"    pm.expect(firstEvent).to.have.property('category');\r",
-									"    pm.expect(firstEvent.category).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent.category).to.have.property('name', 'Тест');\r",
-									"    pm.expect(firstEvent).to.have.property('confirmedRequests', 0);\r",
-									"    pm.expect(firstEvent).to.have.property('eventDate', '2024-12-31 18:00:00');\r",
-									"    pm.expect(firstEvent).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent).to.have.property('initiator');\r",
-									"    pm.expect(firstEvent.initiator).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent.initiator).to.have.property('name', 'Пользователь');\r",
-									"    pm.expect(firstEvent).to.have.property('paid', true);\r",
-									"    pm.expect(firstEvent).to.have.property('title', 'Exciting Event Title');\r",
-									"    pm.expect(firstEvent).to.have.property('views', 0);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Тест данных для второго элемента\", function () {\r",
-									"    const secondEvent = pm.response.json()[1];\r",
-									"\r",
-									"    pm.expect(secondEvent).to.have.property('annotation', 'Cum quis et aut inventore sit. Voluptas optio est praesentium et sed rerum aliquid eum...');\r",
-									"    pm.expect(secondEvent).to.have.property('category');\r",
-									"    pm.expect(secondEvent.category).to.have.property('id', 1);\r",
-									"    pm.expect(secondEvent.category).to.have.property('name', 'Тест');\r",
-									"    pm.expect(secondEvent).to.have.property('confirmedRequests', 0);\r",
-									"    pm.expect(secondEvent).to.have.property('eventDate', '2024-12-02 01:24:02');\r",
-									"    pm.expect(secondEvent).to.have.property('id', 2);\r",
-									"    pm.expect(secondEvent).to.have.property('initiator');\r",
-									"    pm.expect(secondEvent.initiator).to.have.property('id', 1);\r",
-									"    pm.expect(secondEvent.initiator).to.have.property('name', 'Пользователь');\r",
-									"    pm.expect(secondEvent).to.have.property('paid', false);\r",
-									"    pm.expect(secondEvent).to.have.property('title', 'Asperiores veniam id quasi quos inventore vero repudiandae qui numquam.');\r",
-									"    pm.expect(secondEvent).to.have.property('views', 0);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/events",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"events"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "2"
+						},
+						{
+							"key": "eventId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"name": "feature",
-			"item": [
+			"name": "add like - user 1, event 89",
+			"event": [
 				{
-					"name": "add like event 1, user 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "dublicate like Conflict",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(409);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add dislike event 1, user 3",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "DISLIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "3"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "dublicate del Conflict",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(409);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "DISLIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "3"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add like event 2, user 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "eventId",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add like event 2, user 3",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "3"
-								},
-								{
-									"key": "eventId",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get sort = RATING",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Ответ должен содержать данные в формате json\", function () {\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"    const jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.be.an('array');\r",
-									"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 2').to.eql(2);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Тест данных для первого элемента\", function () {\r",
-									"    const firstEvent = pm.response.json()[0];\r",
-									"\r",
-									"    pm.expect(firstEvent).to.have.property('annotation', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');\r",
-									"    pm.expect(firstEvent).to.have.property('category');\r",
-									"    pm.expect(firstEvent.category).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent.category).to.have.property('name', 'Тест');\r",
-									"    pm.expect(firstEvent).to.have.property('confirmedRequests', 0);\r",
-									"    pm.expect(firstEvent).to.have.property('eventDate', '2024-12-31 18:00:00');\r",
-									"    pm.expect(firstEvent).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent).to.have.property('initiator');\r",
-									"    pm.expect(firstEvent.initiator).to.have.property('id', 1);\r",
-									"    pm.expect(firstEvent.initiator).to.have.property('name', 'Пользователь');\r",
-									"    pm.expect(firstEvent).to.have.property('paid', true);\r",
-									"    pm.expect(firstEvent).to.have.property('title', 'Exciting Event Title');\r",
-									"    pm.expect(firstEvent).to.have.property('views', 0);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Тест данных для второго элемента\", function () {\r",
-									"    const secondEvent = pm.response.json()[1];\r",
-									"\r",
-									"    pm.expect(secondEvent).to.have.property('annotation', 'Cum quis et aut inventore sit. Voluptas optio est praesentium et sed rerum aliquid eum...');\r",
-									"    pm.expect(secondEvent).to.have.property('category');\r",
-									"    pm.expect(secondEvent.category).to.have.property('id', 1);\r",
-									"    pm.expect(secondEvent.category).to.have.property('name', 'Тест');\r",
-									"    pm.expect(secondEvent).to.have.property('confirmedRequests', 0);\r",
-									"    pm.expect(secondEvent).to.have.property('eventDate', '2024-12-02 01:24:02');\r",
-									"    pm.expect(secondEvent).to.have.property('id', 2);\r",
-									"    pm.expect(secondEvent).to.have.property('initiator');\r",
-									"    pm.expect(secondEvent.initiator).to.have.property('id', 1);\r",
-									"    pm.expect(secondEvent.initiator).to.have.property('name', 'Пользователь');\r",
-									"    pm.expect(secondEvent).to.have.property('paid', false);\r",
-									"    pm.expect(secondEvent).to.have.property('title', 'Asperiores veniam id quasi quos inventore vero repudiandae qui numquam.');\r",
-									"    pm.expect(secondEvent).to.have.property('views', 0);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/events?sort=RATING",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"events"
-							],
-							"query": [
-								{
-									"key": "categories",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "sort",
-									"value": "RATING"
-								},
-								{
-									"key": "from",
-									"value": "0",
-									"disabled": true
-								},
-								{
-									"key": "size",
-									"value": "1000",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "del like event 1, user 2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
-									"    pm.response.to.have.status(204);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "del dislike event 1, user 3",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
-									"    pm.response.to.have.status(204);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "DISLIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "3"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "del like Conflict",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(409);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "LIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "del dislike Conflict",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(409);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"events",
-								":eventId",
-								"reaction"
-							],
-							"query": [
-								{
-									"key": "reactionType",
-									"value": "DISLIKE"
-								}
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "3"
-								},
-								{
-									"key": "eventId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add like - user 4, event 89",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "4"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add dislike user 3, event 89",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "DISLIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "3"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dublicate del Conflict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "DISLIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "3"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get sort = RATING",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать данные в формате json\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 10').to.eql(10);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Тест данных для первого элемента\", function () {\r",
+							"    const firstEvent = pm.response.json()[0];\r",
+							"    pm.expect(firstEvent).to.have.property('id', 89);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/events?sort=RATING&from=0&size=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"events"
+					],
+					"query": [
+						{
+							"key": "categories",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "RATING"
+						},
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del like event 89, user 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del dislike event 89, user 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "DISLIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "3"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del like Conflict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del dislike Conflict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "DISLIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "3"
+						},
+						{
+							"key": "eventId",
+							"value": "89"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
