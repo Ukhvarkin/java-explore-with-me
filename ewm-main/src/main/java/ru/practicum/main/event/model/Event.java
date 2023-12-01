@@ -1,5 +1,6 @@
 package ru.practicum.main.event.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Event {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private Category category;
 
     @Column(name = "confirmed_requests")
@@ -44,6 +46,7 @@ public class Event {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "initiator_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private User initiator;
 
     @AttributeOverrides(value = {
@@ -72,4 +75,7 @@ public class Event {
 
     @Column(name = "views", columnDefinition = "int default 0")
     private Long views;
+
+    @Column(name = "rating")
+    private Double ratingValue;
 }

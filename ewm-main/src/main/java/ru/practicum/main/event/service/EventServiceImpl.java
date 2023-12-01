@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.category.repository.CategoryRepository;
 import ru.practicum.main.enums.AdminStateAction;
+import ru.practicum.main.enums.ReactionType;
 import ru.practicum.main.enums.RequestStatus;
 import ru.practicum.main.enums.State;
 import ru.practicum.main.enums.UserStateAction;
@@ -24,12 +25,17 @@ import ru.practicum.main.event.repository.EventRepository;
 import ru.practicum.main.exception.BadRequest;
 import ru.practicum.main.exception.ConflictException;
 import ru.practicum.main.exception.NotFoundException;
+import ru.practicum.main.reaction.dto.ReactionDto;
+import ru.practicum.main.reaction.mapper.ReactionMapper;
+import ru.practicum.main.reaction.model.Reaction;
+import ru.practicum.main.reaction.repository.ReactionRepository;
 import ru.practicum.main.request.dto.EventRequestStatusUpdateRequest;
 import ru.practicum.main.request.dto.EventRequestStatusUpdateResult;
 import ru.practicum.main.request.dto.ParticipationRequestDto;
 import ru.practicum.main.request.mapper.RequestMapper;
 import ru.practicum.main.request.model.ParticipationRequest;
 import ru.practicum.main.request.repository.RequestRepository;
+import ru.practicum.main.user.model.User;
 import ru.practicum.main.user.repository.UserRepository;
 import ru.practicum.stats.client.StatsClient;
 import ru.practicum.stats.dto.ViewStatDto;
@@ -39,6 +45,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -51,6 +58,7 @@ public class EventServiceImpl implements EventService {
     private final UserRepository userRepository;
     private final RequestRepository requestRepository;
     private final StatsClient statsClient;
+    private final ReactionRepository reactionRepository;
 
     @Override
     public List<EventFullDto> getByAdmin(List<Long> users, List<State> states, List<Long> categories,
@@ -371,7 +379,7 @@ public class EventServiceImpl implements EventService {
             .get(new ViewStatsRequest(
                 event.getCreatedOn().format(formatter),
                 LocalDateTime.now().format(formatter),
-                new String[]{url},
+                new String[] {url},
                 true
             ));
 
@@ -380,5 +388,71 @@ public class EventServiceImpl implements EventService {
             .ifPresent(viewStat -> event.setViews(viewStat.getHits()));
 
         return event;
+    }
+
+    @Override
+    @Transactional
+    public ReactionDto addReaction(Long eventId, Long userId, ReactionType reactionType) {
+        log.info("Добавление реакции: {}, на событие с id: {}, пользователем с id: {}", reactionType, eventId, userId);
+        Event event = eventRepository.findById(eventId)
+            .orElseThrow(() -> new NotFoundException(String.format("Event with id=%d was not found", eventId)));
+
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", eventId)));
+
+        Optional<Reaction> existingReaction = reactionRepository.findByUserIdAndEventId(userId, eventId);
+
+        if (event.getInitiator().equals(user)) {
+            throw new ConflictException("Инициатор не может оценивать свое событие");
+        }
+
+        if (existingReaction.isPresent()) {
+            log.warn("Пользователь: {} уже оценил событие: {}", userId, eventId);
+            throw new ConflictException(
+                "Пользователь: " + userId + " уже оценил событие: " + eventId);
+        }
+        log.info("Реакция добавлена");
+        updateEventRating(eventId);
+        return ReactionMapper.toDto(reactionRepository.save(ReactionMapper.toModel(event, user, reactionType)));
+    }
+
+    @Override
+    @Transactional
+    public void deleteReaction(Long eventId, Long userId, ReactionType reaction) {
+        log.info("Удаление реакции: {}, события с id: {}, пользователем с id: {}", reaction, eventId, userId);
+        Event event = eventRepository.findById(eventId)
+            .orElseThrow(() -> new NotFoundException(String.format("Event with id=%d was not found", eventId)));
+
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", eventId)));
+
+        Optional<Reaction> existingReaction = reactionRepository.findByUserIdAndEventId(userId, eventId);
+
+        if (existingReaction.isPresent()) {
+            reactionRepository.delete(existingReaction.get());
+            updateEventRating(eventId);
+        } else {
+            throw new ConflictException(
+                "Пользователь: " + user.getName() + "не оценивал событие: " + event.getTitle());
+        }
+    }
+
+    private void updateEventRating(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+            .orElseThrow(() -> new NotFoundException(String.format("Event with id=%d was not found", eventId)));
+
+        long likes = reactionRepository.countByEventIdAndReactionType(eventId, ReactionType.LIKE);
+        long dislikes = reactionRepository.countByEventIdAndReactionType(eventId, ReactionType.DISLIKE);
+
+        double rating;
+        if (likes + dislikes > 0) {
+            rating = (double) likes / (likes + dislikes);
+        } else {
+            rating = 0.0;
+        }
+
+        event.setRatingValue(rating);
+        eventRepository.updateEventRating(eventId, rating);
+        log.info("Обновление рейтинга события с id: {}", eventId);
     }
 }

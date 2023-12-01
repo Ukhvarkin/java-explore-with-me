@@ -2,6 +2,7 @@ package ru.practicum.main.event.repository;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -37,8 +38,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
         "(e.eventDate > CURRENT_TIMESTAMP" +
         ")) " +
         "AND (:onlyAvailable = false OR (e.confirmedRequests < e.participantLimit)) " +
-        "ORDER BY CASE WHEN :sort = 'EVENT_DATE' THEN e.eventDate END ASC, " +
-        "CASE WHEN :sort = 'VIEWS' THEN e.views END ASC")
+        "ORDER BY " +
+        "CASE WHEN :sort = 'EVENT_DATE' THEN e.eventDate END ASC, " +
+        "CASE WHEN :sort = 'VIEWS' THEN e.views END ASC, " +
+        "CASE WHEN :sort = 'RATING' THEN e.ratingValue END DESC"
+    )
     List<Event> findAllEventsPublic(@Param("text") String text,
                                     @Param("categories") List<Long> categories,
                                     @Param("paid") Boolean paid,
@@ -52,4 +56,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     long countByCategoryId(long catId);
 
     List<Event> findAllByIdIn(List<Long> events);
+
+    @Modifying
+    @Query("UPDATE Event e SET e.ratingValue = :rating WHERE e.id = :eventId")
+    void updateEventRating(@Param("eventId") Long eventId, @Param("rating") Double rating);
 }
