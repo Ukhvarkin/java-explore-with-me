@@ -41,7 +41,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
         "ORDER BY " +
         "CASE WHEN :sort = 'EVENT_DATE' THEN e.eventDate END ASC, " +
         "CASE WHEN :sort = 'VIEWS' THEN e.views END ASC, " +
-        "CASE WHEN :sort = 'RATING' THEN e.ratingValue END DESC"
+        "CASE WHEN :sort = 'RATING' THEN e.ratingValue END DESC NULLS LAST"
     )
     List<Event> findAllEventsPublic(@Param("text") String text,
                                     @Param("categories") List<Long> categories,

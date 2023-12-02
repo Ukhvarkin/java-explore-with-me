@@ -389,9 +389,17 @@
 							"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 10').to.eql(10);\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Test event[0] 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('id');\r",
+							"    pm.expect(jsonData[0].id, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"\r",
 							"pm.test(\"Тест данных для первого элемента\", function () {\r",
-							"    const firstEvent = pm.response.json()[0];\r",
-							"    pm.expect(firstEvent).to.have.property('id', 5);\r",
+							"    const response = pm.response.json();\r",
+							"    const expectedId = 5;\r",
+							"    const firstEvent = response.find(event => event.id === expectedId);\r",
+							"    pm.expect(firstEvent).to.be.ok;\r",
 							"});\r",
 							""
 						],
@@ -411,11 +419,6 @@
 						"events"
 					],
 					"query": [
-						{
-							"key": "categories",
-							"value": "1",
-							"disabled": true
-						},
 						{
 							"key": "sort",
 							"value": "RATING"
