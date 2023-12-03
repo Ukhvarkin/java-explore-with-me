@@ -27,14 +27,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -69,6 +69,25 @@
 							"    pm.response.to.have.status(201);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 1').to.eql(1);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be LIKE').to.eql('LIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -79,14 +98,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -121,6 +140,25 @@
 							"    pm.response.to.have.status(201);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 4').to.eql(4);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be LIKE').to.eql('LIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -131,14 +169,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -173,6 +211,25 @@
 							"    pm.response.to.have.status(201);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be LIKE').to.eql('LIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -183,14 +240,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -225,6 +282,25 @@
 							"    pm.response.to.have.status(201);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 6').to.eql(6);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be LIKE').to.eql('LIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -235,14 +311,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -277,6 +353,25 @@
 							"    pm.response.to.have.status(201);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 3').to.eql(3);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 89').to.eql(89);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be DISLIKE').to.eql('DISLIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -287,14 +382,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=DISLIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -319,16 +414,33 @@
 			"response": []
 		},
 		{
-			"name": "dublicate del Conflict",
+			"name": "CONFLICT dublicate del",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-							"    pm.response.to.have.status(409);\r",
+							"pm.test(\"Ответ должен содержать код статуса 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test userId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('userId');\r",
+							"    pm.expect(jsonData.userId, '\"id\" must be 3').to.eql(3);\r",
+							"});\r",
+							"pm.test(\"Test eventId 'id' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('eventId');\r",
+							"    pm.expect(jsonData.eventId, '\"id\" must be 89').to.eql(89);\r",
+							"});\r",
+							"pm.test(\"Test reactionType 'reactionType' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('reactionType');\r",
+							"    pm.expect(jsonData.reactionType, '\"id\" must be DISLIKE').to.eql('DISLIKE');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -339,14 +451,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=DISLIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -437,7 +549,7 @@
 			"response": []
 		},
 		{
-			"name": "del like event 5, user 1",
+			"name": "del like - user1, event 5",
 			"event": [
 				{
 					"listen": "test",
@@ -455,14 +567,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -487,7 +599,7 @@
 			"response": []
 		},
 		{
-			"name": "del dislike event 89, user 3",
+			"name": "del dislike - user 3 event 89",
 			"event": [
 				{
 					"listen": "test",
@@ -505,14 +617,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=DISLIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -537,7 +649,7 @@
 			"response": []
 		},
 		{
-			"name": "del like Conflict",
+			"name": "CONFLICT del like",
 			"event": [
 				{
 					"listen": "test",
@@ -557,14 +669,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=LIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
@@ -589,14 +701,736 @@
 			"response": []
 		},
 		{
-			"name": "del dislike Conflict",
+			"name": "get all reactions, user 3, eventId = empty",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
-							"    pm.response.to.have.status(409);\r",
+							"pm.test(\"Ответ должен содержать код статуса 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать данные в формате json\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('array');\r",
+							"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 3').to.eql(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test reaction[0] 'userId' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0]).to.have.property('userId');\r",
+							"    pm.expect(jsonData[0].userId, '\"userId\" must be 4').to.eql(4);\r",
+							"});\r",
+							"pm.test(\"Test reaction[1] 'userId' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[1]).to.have.property('userId');\r",
+							"    pm.expect(jsonData[1].userId, '\"userId\" must be 5').to.eql(5);\r",
+							"});\r",
+							"pm.test(\"Test reaction[2] 'userId' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[2]).to.have.property('userId');\r",
+							"    pm.expect(jsonData[2].userId, '\"userId\" must be 6').to.eql(6);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "5",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get reactions  - user 4, event 5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating?eventId=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND add like - user 9999, event 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"userId\" must be 9999').to.eql(\"User with id=9999 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "9999"
+						},
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND add like - user -1 event 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"userId\" must be -1').to.eql(\"User with id=-1 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "-1"
+						},
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND add like - user 1, event 9999",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"eventId\" must be 9999').to.eql(\"Event with id=9999 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "9999"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND add like - user 1, event -1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"eventId\" must be -1').to.eql(\"Event with id=-1 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND add like - reactionType = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST add like - reactionType = LOL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LOL",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LOL"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST add like - userId = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": ""
+						},
+						{
+							"key": "eventId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST add like - eventId = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "4"
+						},
+						{
+							"key": "eventId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST get all reactions - empty user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "5",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND del like - user 9999, event 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"id\" must be 9999').to.eql(\"User with id=9999 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "9999"
+						},
+						{
+							"key": "eventId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT FOUND del like - user 1, event 9999",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Get genre response\", function () {\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"pm.test(\"Test error handler 'message' field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property('message');\r",
+							"    pm.expect(jsonData.message, '\"id\" must be 9999').to.eql(\"Event with id=9999 was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": "9999"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST dell like - userId = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
 							"});"
@@ -609,31 +1443,83 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/events/:eventId/reaction?reactionType=DISLIKE",
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"users",
 						":userId",
-						"events",
+						"rating",
 						":eventId",
 						"reaction"
 					],
 					"query": [
 						{
 							"key": "reactionType",
-							"value": "DISLIKE"
+							"value": "LIKE"
 						}
 					],
 					"variable": [
 						{
 							"key": "userId",
-							"value": "3"
+							"value": ""
 						},
 						{
 							"key": "eventId",
-							"value": "89"
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD REQUEST dell like - eventId = null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/rating/:eventId/reaction?reactionType=LIKE",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"rating",
+						":eventId",
+						"reaction"
+					],
+					"query": [
+						{
+							"key": "reactionType",
+							"value": "LIKE"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "eventId",
+							"value": ""
 						}
 					]
 				}
