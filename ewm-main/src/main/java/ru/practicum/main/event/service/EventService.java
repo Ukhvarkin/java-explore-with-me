@@ -1,6 +1,5 @@
 package ru.practicum.main.event.service;
 
-import ru.practicum.main.enums.ReactionType;
 import ru.practicum.main.enums.State;
 import ru.practicum.main.event.dto.EventFilterParams;
 import ru.practicum.main.event.dto.EventFullDto;
@@ -8,7 +7,6 @@ import ru.practicum.main.event.dto.EventShortDto;
 import ru.practicum.main.event.dto.NewEventDto;
 import ru.practicum.main.event.dto.UpdateEventAdminRequest;
 import ru.practicum.main.event.dto.UpdateEventUserRequest;
-import ru.practicum.main.reaction.dto.ReactionDto;
 import ru.practicum.main.request.dto.EventRequestStatusUpdateRequest;
 import ru.practicum.main.request.dto.EventRequestStatusUpdateResult;
 import ru.practicum.main.request.dto.ParticipationRequestDto;
@@ -40,8 +38,4 @@ public interface EventService {
 
     EventRequestStatusUpdateResult updateStatusByPrivate(Long userId, Long eventId,
                                                          EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest);
-
-    ReactionDto addReaction(Long eventId, Long userId, ReactionType reaction);
-
-    void deleteReaction(Long eventId, Long userId, ReactionType reactionType);
 }
