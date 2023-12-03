@@ -14,4 +14,6 @@ public interface ReactionRepository extends JpaRepository<Reaction, Long> {
     long countByEventIdAndReactionType(Long eventId, ReactionType reactionType);
 
     List<Reaction> findByUserIdAndEventId(Long userId, Long eventId, Pageable pageable);
+
+    List<Reaction> findByUserId(Long userId, Pageable pageable);
 }

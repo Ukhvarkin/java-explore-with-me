@@ -107,7 +107,7 @@ public class ReactionServiceImpl implements ReactionService {
                 .map(ReactionMapper::toDto)
                 .collect(Collectors.toList());
         }
-        return reactionRepository.findAll().stream()
+        return reactionRepository.findByUserId(userId, pageable).stream()
             .map(ReactionMapper::toDto)
             .collect(Collectors.toList());
     }

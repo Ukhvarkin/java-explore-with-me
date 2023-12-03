@@ -716,23 +716,13 @@
 							"    pm.response.to.be.json;\r",
 							"    const jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData).to.be.an('array');\r",
-							"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 3').to.eql(3);\r",
+							"    pm.expect(jsonData.length, 'Количество элементов в массиве должно быть 1').to.eql(1);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Test reaction[0] 'userId' field\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData[0]).to.have.property('userId');\r",
-							"    pm.expect(jsonData[0].userId, '\"userId\" must be 4').to.eql(4);\r",
-							"});\r",
-							"pm.test(\"Test reaction[1] 'userId' field\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData[1]).to.have.property('userId');\r",
-							"    pm.expect(jsonData[1].userId, '\"userId\" must be 5').to.eql(5);\r",
-							"});\r",
-							"pm.test(\"Test reaction[2] 'userId' field\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData[2]).to.have.property('userId');\r",
-							"    pm.expect(jsonData[2].userId, '\"userId\" must be 6').to.eql(6);\r",
+							"    pm.expect(jsonData[0].userId, '\"userId\" must be 5').to.eql(5);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -762,7 +752,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "3"
+							"value": "5"
 						}
 					]
 				}
