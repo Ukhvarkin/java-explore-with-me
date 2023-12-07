@@ -371,7 +371,7 @@ public class EventServiceImpl implements EventService {
             .get(new ViewStatsRequest(
                 event.getCreatedOn().format(formatter),
                 LocalDateTime.now().format(formatter),
-                new String[]{url},
+                new String[] {url},
                 true
             ));
 

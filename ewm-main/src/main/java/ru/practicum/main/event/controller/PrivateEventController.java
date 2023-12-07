@@ -35,8 +35,8 @@ public class PrivateEventController {
 
     @GetMapping
     public List<EventShortDto> getAll(@PositiveOrZero @PathVariable(name = "userId") Long userId,
-                               @RequestParam(value = "from", defaultValue = "0") int from,
-                               @RequestParam(value = "size", defaultValue = "10") int size) {
+                                      @RequestParam(value = "from", defaultValue = "0") int from,
+                                      @RequestParam(value = "size", defaultValue = "10") int size) {
         log.info("GET : Запрос на получение списка мероприятий для пользователя с id: {}, " +
                 "с параметрами - from: {}, size: {}",
             userId, from, size);
@@ -46,7 +46,7 @@ public class PrivateEventController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto add(@Positive @PathVariable(name = "userId") Long userId,
-                     @Valid @RequestBody NewEventDto newEventDto) {
+                            @Valid @RequestBody NewEventDto newEventDto) {
         log.info("POST : Запрос на добавление нового мероприятия пользователя с id: {}. " +
             "Параметры: {}", userId, newEventDto);
         return eventService.addByPrivate(userId, newEventDto);
@@ -54,32 +54,33 @@ public class PrivateEventController {
 
     @GetMapping("/{eventId}")
     public EventFullDto getById(@Positive @PathVariable(name = "userId") Long userId,
-                         @Positive @PathVariable(name = "eventId") Long eventId) {
+                                @Positive @PathVariable(name = "eventId") Long eventId) {
         log.info("GET : Запрос на получение мероприятия с id: {} пользователя с id: {}", eventId, userId);
         return eventService.getByIdPrivate(userId, eventId);
     }
 
     @PatchMapping("/{eventId}")
-    EventFullDto update(@Positive @PathVariable(name = "userId") Long userId,
-                        @Positive @PathVariable(name = "eventId") Long eventId,
-                        @Valid @RequestBody UpdateEventUserRequest updateEvent) {
+    public EventFullDto update(@Positive @PathVariable(name = "userId") Long userId,
+                               @Positive @PathVariable(name = "eventId") Long eventId,
+                               @Valid @RequestBody UpdateEventUserRequest updateEvent) {
         log.info("PATCH : Запрос на модификацию события с id: {}, пользователем с id: {}. " +
             "Параметры: {}", eventId, userId, updateEvent);
         return eventService.updateByPrivate(userId, eventId, updateEvent);
     }
 
     @GetMapping("/{eventId}/requests")
-    List<ParticipationRequestDto> getRequests(@Positive @PathVariable(name = "userId") Long userId,
-                                              @Positive @PathVariable(name = "eventId") Long eventId) {
+    public List<ParticipationRequestDto> getRequests(@Positive @PathVariable(name = "userId") Long userId,
+                                                     @Positive @PathVariable(name = "eventId") Long eventId) {
         log.info("GET : Запрос на получение информации о запросах на участие в событии с id: {}, " +
             "пользователя с id: {}", eventId, userId);
         return eventService.getRequestsByPrivate(userId, eventId);
     }
 
     @PatchMapping("/{eventId}/requests")
-    EventRequestStatusUpdateResult updateRequest(@Positive @PathVariable(name = "userId") Long userId,
-                                                 @Positive @PathVariable(name = "eventId") Long eventId,
-                                                 @Valid @RequestBody EventRequestStatusUpdateRequest updateRequest) {
+    public EventRequestStatusUpdateResult updateRequest(@Positive @PathVariable(name = "userId") Long userId,
+                                                        @Positive @PathVariable(name = "eventId") Long eventId,
+                                                        @Valid @RequestBody
+                                                        EventRequestStatusUpdateRequest updateRequest) {
         log.info("PATCH : Запрос на изменение статуса заявки в событии с id: {}, пользователя с id: {}. " +
             "Параметры: {}", eventId, userId, updateRequest);
         return eventService.updateStatusByPrivate(userId, eventId, updateRequest);

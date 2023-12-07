@@ -72,4 +72,7 @@ public class Event {
 
     @Column(name = "views", columnDefinition = "int default 0")
     private Long views;
+
+    @Column(name = "rating", columnDefinition = "float default 0")
+    private Double ratingValue;
 }
